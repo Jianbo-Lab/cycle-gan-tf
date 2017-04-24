@@ -9,7 +9,7 @@ tf.set_random_seed(123)
 np.random.seed(123)
 random.seed(123)
 
-TARGET = 'celebA'
+TARGET = 'bald'
 
 LOG_DIR = './log/'+TARGET
 
@@ -23,7 +23,7 @@ BETA_2 = 0.9
 LAMBDA = 10
 LAMBDA_CYCLE = 10
 
-BATCH_SIZE = 8
+BATCH_SIZE = 64
 
 MAX_ITERATION = 1000000
 SAVE_PERIOD = 10000
