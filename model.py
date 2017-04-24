@@ -9,41 +9,19 @@ def build_enc_dec(source,reuse=False) :
             Conv2d('conv2d_1',channels,32,7,7,1,1),
             Lrelu(),
         ]
-        # for l,(in_,out_) in enumerate([(32,64),(64,128)]):
-        #     encoder_spec +=[
-        #         Conv2d('conv2d_%d'%(l+2),in_,out_,3,3,2,2),
-        #         InstanceNorm('conv2d_in_%d'%(l+2)),
-        #         Lrelu(),
-        #     ]
-        # for l in xrange(9) :
-        #     encoder_spec +=[
-        #         ResidualBlock('res_%d'%(l+1),128)
-        #     ]
-    # with tf.variable_scope('decoder') as s:
-    #     decoder_spec = []
-    #     for l,(in_,out_,size_) in enumerate([(128,64,image_size//2),(64,32,image_size)]):
-    #         decoder_spec += [
-    #             TransposedConv2d('tconv_%d'%(l+1),in_,[batch_size,out_,size_,size_],3,3,2,2),
-    #             InstanceNorm('tconv_in_%d'%(l+1)),
-    #             Lrelu()
-    #         ]
-    #     decoder_spec += [
-    #         Conv2d('conv2d_1',32,3,7,7,1,1),
-    #         lambda t : tf.nn.tanh(t,name='b_gen'),
-    #     ]
-        for l,(in_,out_) in enumerate([(16,32),(32,64)]):
+        for l,(in_,out_) in enumerate([(32,64),(64,128)]):
             encoder_spec +=[
                 Conv2d('conv2d_%d'%(l+2),in_,out_,3,3,2,2),
                 InstanceNorm('conv2d_in_%d'%(l+2)),
                 Lrelu(),
             ]
-        for l in xrange(6) :
+        for l in xrange(9) :
             encoder_spec +=[
-                ResidualBlock('res_%d'%(l+1),64)
+                ResidualBlock('res_%d'%(l+1),128)
             ]
     with tf.variable_scope('decoder') as s:
         decoder_spec = []
-        for l,(in_,out_,size_) in enumerate([(64,32,image_size//2),(32,32,image_size)]):
+        for l,(in_,out_,size_) in enumerate([(128,64,image_size//2),(64,32,image_size)]):
             decoder_spec += [
                 TransposedConv2d('tconv_%d'%(l+1),in_,[batch_size,out_,size_,size_],3,3,2,2),
                 InstanceNorm('tconv_in_%d'%(l+1)),
@@ -52,7 +30,7 @@ def build_enc_dec(source,reuse=False) :
         decoder_spec += [
             Conv2d('conv2d_1',32,3,7,7,1,1),
             lambda t : tf.nn.tanh(t,name='b_gen'),
-        ]
+        ] 
 
     _t = source
     for block in encoder_spec+decoder_spec :
