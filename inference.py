@@ -16,7 +16,7 @@ random.seed(123)
 ##########################################
 # User defined variables
 ##########################################
-TARGET = 'horse2zebra'
+TARGET = 'celebA'
 MODEL_FILE = './models/horse2zebra/model.ckpt-20000'
 
 
