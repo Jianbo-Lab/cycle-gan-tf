@@ -17,7 +17,7 @@ random.seed(123)
 # User defined variables
 ##########################################
 TARGET = 'bald'
-MODEL_FILE = './log/'+ TARGET+ '/model.ckpt-50000'
+MODEL_FILE = './log/'+ TARGET+ '/model.ckpt-1000'
 
 
 BATCH_SIZE = 1
