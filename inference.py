@@ -17,7 +17,7 @@ random.seed(123)
 # User defined variables
 ##########################################
 TARGET = 'celebA'
-MODEL_FILE = './models/celebA/model.ckpt-20000'
+MODEL_FILE = './log/celebA/model.ckpt-1000'
 
 
 BATCH_SIZE = 1
