@@ -9,7 +9,7 @@ tf.set_random_seed(123)
 np.random.seed(123)
 random.seed(123)
 
-TARGET = 'horse2zebra'
+TARGET = 'celebA'
 
 LOG_DIR = './log/'+TARGET
 
@@ -34,8 +34,8 @@ NUM_CRITIC_TRAIN = 4
 #############################################3
 # Define Network
 #############################################3
-_, a = dataset.get_image_batch(A_DIR,BATCH_SIZE,300,256)
-_, b = dataset.get_image_batch(B_DIR,BATCH_SIZE,300,256)
+_, a = dataset.get_image_batch(A_DIR,BATCH_SIZE,64,64)
+_, b = dataset.get_image_batch(B_DIR,BATCH_SIZE,64,64)
 
 with tf.variable_scope('gen_a_to_b') as a_to_b_scope :
     b_gen = build_enc_dec(a)

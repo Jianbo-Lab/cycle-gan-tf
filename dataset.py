@@ -2,8 +2,8 @@ import tensorflow as tf
 
 NUM_THREADS=4
 
-def get_image_batch(pattern,batch_size,image_size=143,crop_size=128,train=True) :
-    if (train) :
+def get_image_batch(pattern,batch_size,image_size=64,crop_size=64,train=True) :
+    if (train):
         random_flip = lambda x : tf.image.random_flip_left_right(x)
         crop = lambda x : tf.random_crop(image,[crop_size,crop_size,3])
         queue = lambda : tf.train.string_input_producer(tf.train.match_filenames_once(pattern),
