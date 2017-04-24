@@ -43,14 +43,14 @@ def build_enc_dec(source,reuse=False) :
             ]
     with tf.variable_scope('decoder') as s:
         decoder_spec = []
-        for l,(in_,out_,size_) in enumerate([(64,32,image_size//2),(32,16,image_size)]):
+        for l,(in_,out_,size_) in enumerate([(64,32,image_size//2),(32,32,image_size)]):
             decoder_spec += [
                 TransposedConv2d('tconv_%d'%(l+1),in_,[batch_size,out_,size_,size_],3,3,2,2),
                 InstanceNorm('tconv_in_%d'%(l+1)),
                 Lrelu()
             ]
         decoder_spec += [
-            Conv2d('conv2d_1',16,3,7,7,1,1),
+            Conv2d('conv2d_1',32,3,7,7,1,1),
             lambda t : tf.nn.tanh(t,name='b_gen'),
         ]
 
