@@ -9,16 +9,22 @@ def build_enc_dec(source,reuse=False) :
             Conv2d('conv2d_1',channels,32,7,7,1,1),
             Lrelu(),
         ]
-        for l,(in_,out_) in enumerate([(32,64),(64,128)]):
+        # for l,(in_,out_) in enumerate([(32,64),(64,128)]):
+        #     encoder_spec +=[
+        #         Conv2d('conv2d_%d'%(l+2),in_,out_,3,3,2,2),
+        #         InstanceNorm('conv2d_in_%d'%(l+2)),
+        #         Lrelu(),
+        #     ]
+        # for l in xrange(9) :
+        #     encoder_spec +=[
+        #         ResidualBlock('res_%d'%(l+1),128)
+        #     ]
+        for l,(in_,out_) in enumerate([(16,32),(32,64)]):
             encoder_spec +=[
                 Conv2d('conv2d_%d'%(l+2),in_,out_,3,3,2,2),
                 InstanceNorm('conv2d_in_%d'%(l+2)),
                 Lrelu(),
             ]
-        # for l in xrange(9) :
-        #     encoder_spec +=[
-        #         ResidualBlock('res_%d'%(l+1),128)
-        #     ]
         for l in xrange(6) :
             encoder_spec +=[
                 ResidualBlock('res_%d'%(l+1),64)
